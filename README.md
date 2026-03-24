@@ -29,14 +29,10 @@
 ## ✨ Features
 <img src="./images/zigbee2mqtt.png" width="400" alt="Zigbee2MQTT" />  
 
-- Counts pulses from a meter using a reed sensor connected to a GPIO and GND pin. 
+- Counts pulses from a source using a reed sensor connected to the board. 
 - Stores pulse count in **non-volatile memory (NVS)**.  
-- Sends data to **Zigbee2MQTT**:  
-  - On a configurable timer  
-  - When accumulated pulses reach a threshold  
-  - Triggers immediate transmission when **Boot button** is pressed  
-- Supports **deep sleep** for low power.  
-- LED for pulse indication.  
+- Sends data to **Zigbee2MQTT**.  
+- LED for battery charging indication.  
 
 ---
 
