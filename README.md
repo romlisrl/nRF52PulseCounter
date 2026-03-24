@@ -77,6 +77,7 @@
 2. Pulses are stored in **NVS flash** to survive power loss.  
 3. The counter value and battery voltage are sent to **Zigbee2MQTT**.  .  
 
+<img src="./images/zigbee2mqtt-expose.png" width="400" alt="Zigbee2MQTT" />  
 ---
 
 ## ⚡ Installation  
