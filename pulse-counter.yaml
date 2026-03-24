@@ -1,0 +1,108 @@
+esphome:
+  name: pulses-counter
+  friendly_name: Pulses Counter
+  on_boot:
+    priority: -100
+    then:
+      - delay: 10s
+      - component.update: batt_raw
+      - delay: 500ms
+      - lambda: |-
+          id(total_count).publish_state(id(pulse_count));
+          float v = id(batt_raw).state * 2.0;
+          id(battery_voltage).publish_state(v);
+
+nrf52:
+  board: adafruit_feather_nrf52840
+  bootloader: adafruit_nrf52_sd140_v6
+  dcdc: true
+
+zigbee:
+  power_source: BATTERY
+  wipe_on_boot: false
+  on_join:
+    then:
+      - delay: 2s
+      - component.update: batt_raw
+      - delay: 500ms
+      - lambda: |-
+          id(total_count).publish_state(id(pulse_count));
+          float v = id(batt_raw).state * 2.0;
+          id(battery_voltage).publish_state(v);
+
+logger:
+#  level: DEBUG
+#  hardware_uart: USB_CDC
+
+globals:
+  - id: pulse_count
+    type: uint32_t
+    restore_value: true
+    initial_value: '0'
+
+binary_sensor:
+  - platform: gpio
+    id: reed_input
+    pin:
+      number: P0.06     # D1 = REED_PIN = 11
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Reed"
+    internal: true
+    filters:
+      - delayed_on: 100ms
+    on_press:
+      then:
+        - logger.log: "PULSE!"
+        - lambda: |-
+            id(pulse_count) += 1;
+            id(total_count).publish_state(id(pulse_count));
+
+sensor:
+  # Gas counter
+  - platform: template
+    id: total_count
+    name: "Pulses_Counts"
+    unit_of_measurement: "pulses"
+    accuracy_decimals: 0
+    lambda: return id(pulse_count);
+    update_interval: never
+
+  # Battery: divider 100кΩ+100кΩ on P0.31 (AIN7)
+  - platform: adc
+    id: batt_raw
+    pin: P0.31             # AIN7
+    internal: true
+    update_interval: 60min
+    on_value:
+      then:
+        - lambda: |-
+            float v = id(batt_raw).state * 2.0;
+            id(battery_voltage).publish_state(v);
+            float pct = (v - 3.0f) / (4.2f - 3.0f) * 100.0f;
+            if (pct > 100) pct = 100;
+            if (pct < 0)   pct = 0;
+            id(battery_pct).publish_state(pct);
+
+  - platform: template
+    id: battery_voltage
+    name: "Battery_Voltage"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    update_interval: never
+    lambda: return id(batt_raw).state * 2.0;  # divider 1:2
+
+  - platform: template
+    id: battery_pct
+    name: "Battery"
+    unit_of_measurement: "%"
+    accuracy_decimals: 0
+    device_class: battery
+    internal: true
+    update_interval: never
+    lambda: |-
+      float v = id(batt_raw).state * 2.0;
+      float pct = (v - 3.0f) / (4.2f - 3.0f) * 100.0f;
+      if (pct > 100) pct = 100;
+      if (pct < 0)   pct = 0;
+      return pct;
