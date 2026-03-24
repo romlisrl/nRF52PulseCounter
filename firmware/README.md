@@ -8,10 +8,13 @@
 
 ### ⚠️ Don't forget to create an [external converter](./zigbee2mqtt/) in Zigbee2MQTT first!  
 
+```bash
 - git clone https://github.com/romlisrl/nRF52PulseCounter
 - cd nRF52PulseCounter
 - esphome compile gas-counter.yaml
 - adafruit-nrfutil dfu serial --package .\firmware.zip -p COM15 -b 115200 
-  - uf2conv.py firmware.hex -c -o firmware.uf2 (copy UF2 file to the board in DFU mode)
+```
+or  
+>- uf2conv.py firmware.hex -c -o firmware.uf2 (copy UF2 file to the board in DFU mode)  
 
 ---
