@@ -27,7 +27,7 @@
 ---
 
 ## ✨ Features
-<img src="./images/Zigbee2MQTT.png" width="400" alt="Zigbee2MQTT" />  
+<img src="./images/zigbee2mqtt.png" width="400" alt="Zigbee2MQTT" />  
 
 - Counts pulses from a meter using a reed sensor connected to a GPIO and GND pin. 
 - Stores pulse count in **non-volatile memory (NVS)**.  
@@ -88,7 +88,8 @@
 - git clone https://github.com/romlisrl/nRF52PulseCounter
 - cd nRF52PulseCounter
 - esphome compile gas-counter.yaml
-- adafruit-nrfutil dfu serial --package .\firmware.zip -p COM15 -b 115200 / uf2conv.py firmware.hex -c -o firmware.uf2
+- adafruit-nrfutil dfu serial --package .\firmware.zip -p COM15 -b 115200 
+  - uf2conv.py firmware.hex -c -o firmware.uf2 (copy UF2 file to the board in DFU mode)
 
 ## 📝 Notes
 
