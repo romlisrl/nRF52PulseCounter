@@ -14,6 +14,7 @@
 2. Restart Zigbee2MQTT completely (full restart required).  
 3. Enable Zigbee pairing (**permit join**)  
 4. Flash the firmware onto your nRF52840 Supermini board.  
+5. Create Home Assistant helper.  
 
 ---
 
@@ -78,6 +79,21 @@
 3. The counter value and battery voltage are sent to **Zigbee2MQTT**.  .  
 
 <img src="./images/zigbee2mqtt-expose.png" width="400" alt="Zigbee2MQTT" />  
+
+## 🏠 Home Assistant Configuration
+
+To correctly interpret the counter values as gas consumption, create a Template Helper in Home Assistant with the following parameters:
+
+### 📊 Template
+```yaml
+{{ (states('sensor.0xf4ce3662f44a0e45_total_count') | float(0) * 0.01 + 5720.17) | round(2) }}
+```
+### ⚙️ Settings
+```yaml
+Device class: Gas
+State class: Total increasing
+Unit of measurement: m³
+```
 ---
 
 ## ⚡ Installation  
