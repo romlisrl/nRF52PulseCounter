@@ -60,12 +60,12 @@
 
 ## 🔌 Wiring Example
 
-| nRF52840 Pin | Connection           |
+| nRF52840 Pin | Connection            |
 |--------------|-----------------------|
 | P0.06        | Reed sensor signal    |
 | GND          | Reed sensor GND       |
-| P0.04        | +3.7V (or USB)        |
-| GND          | -3.7V (or USB)        |
+| P0.04        | +VDD (+3.3V)          |
+| GND          | -VDD (-3.3V)          |
 |              |                       |
 
 <img src="./images/nRF52840-wiring.png" width="400" alt="nRF52840 Supermini wiring" />
