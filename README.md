@@ -65,7 +65,7 @@
 | P0.06        | Reed sensor signal    |
 | GND          | Reed sensor GND       |
 | P0.04        | +VDDH (+ 3.0–4.2V)    |
-| GND          | Ground (battery -)    |
+| GND          | Battery '-'           |
 |              |                       |
 
 <img src="./images/nRF52840-wiring.png" width="400" alt="nRF52840 Supermini wiring" />
