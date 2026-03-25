@@ -44,7 +44,7 @@
 - Utility meter with pulse output (e.g., BK-G4MT, Honeywell BK-G6M or similar)  
 - Reed sensor (<20 AT recommended, **Normally Open (NO)**) 
   - tested with [GPS-01 Reed Switch 4×18](https://www.aliexpress.com/item/1005007756163643.html) (not sensitive enough)  
-- [Battery power supply (**16850**)](https://www.aliexpress.com/item/1005009442666781.html) 
+- [Battery power supply (⚠️ use at your own risk)](https://www.aliexpress.com/item/1005009442666781.html) 
   - (supports USB-C power banks)  
 
 ---
