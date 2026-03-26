@@ -20,7 +20,7 @@
 
 ## ⚠️ Power Notes  
 
-- The P0.04 pin operates at VDD levels (typically **3.3V**).  
+- The P0.04 pin can operates at VDDH levels (typically **3.3-4.2V**).  
 - The pin P0.04 is **NOT 5V tolerant**.  
 - Use a voltage regulator or voltage divider if needed.  
 - Can also be **powered from USB** (3.3V internally regulated).  
