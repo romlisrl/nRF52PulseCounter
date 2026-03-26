@@ -114,3 +114,4 @@ or
 
 - Make sure the Zigbee coordinator is running and **permit join is enabled**
 - After modifying the external converter, **restart Zigbee2MQTT completely** (do not use *Settings → Tools → Restart Zigbee2MQTT*)
+- The nRF52840 Supermini board might need a [bootloader update](https://github.com/adafruit/Adafruit_nRF52_Bootloader/releases/download/0.10.0/update-nice_nano_bootloader-0.10.0_nosd.uf2).  
