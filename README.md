@@ -41,7 +41,7 @@
 <img src="./images/nRF52840-supermini.png" width="400" alt="nRF52840 Supermini" />  
 
 - [nRF52840 Supermini board](https://www.aliexpress.com/item/1005008965369485.html)  
-- Utility meter with pulse output (e.g., BK-G4MT, Honeywell BK-G6M or similar)  
+- Utility meter with pulse output (such as gas meter BK-G4MT, Honeywell BK-G6M or similar)  
 - Reed sensor (<20 AT recommended, **Normally Open (NO)**) 
   - tested with [GPS-01 Reed Switch 4×18](https://www.aliexpress.com/item/1005007756163643.html) (not sensitive enough)  
 - [Battery power supply](https://www.aliexpress.com/item/1005009442666781.html) (tested with 18650 ⚠️use at your own risk)
