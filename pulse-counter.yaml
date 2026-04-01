@@ -30,7 +30,7 @@ zigbee:
           float v = id(batt_raw).state * 2.0;
           id(battery_voltage).publish_state(v);
 
-logger:
+#logger:
 #  level: DEBUG
 #  hardware_uart: USB_CDC
 
@@ -53,7 +53,7 @@ binary_sensor:
       - delayed_on: 100ms
     on_press:
       then:
-        - logger.log: "PULSE!"
+#        - logger.log: "PULSE!"
         - lambda: |-
             id(pulse_count) += 1;
             id(total_count).publish_state(id(pulse_count));
