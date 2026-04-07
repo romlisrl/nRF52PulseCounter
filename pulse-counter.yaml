@@ -9,7 +9,7 @@ esphome:
       - delay: 500ms
       - lambda: |-
           id(total_count).publish_state(id(pulse_count));
-          float v = id(batt_raw).state * 2.0;
+          float v = id(batt_raw).state * 2.0f;
           id(battery_voltage).publish_state(v);
 
 nrf52:
@@ -27,7 +27,7 @@ zigbee:
       - delay: 500ms
       - lambda: |-
           id(total_count).publish_state(id(pulse_count));
-          float v = id(batt_raw).state * 2.0;
+          float v = id(batt_raw).state * 2.0f;
           id(battery_voltage).publish_state(v);
 
 #logger:
@@ -44,13 +44,14 @@ binary_sensor:
   - platform: gpio
     id: reed_input
     pin:
-      number: P0.06     # D1 = REED_PIN = 11
+      number: P0.06     # REED_PIN
       mode: INPUT_PULLUP
       inverted: true
     name: "Reed"
     internal: true
     filters:
-      - delayed_on: 100ms
+      - delayed_on: 50ms
+      - delayed_off: 50ms
     on_press:
       then:
 #        - logger.log: "PULSE!"
@@ -77,7 +78,7 @@ sensor:
     on_value:
       then:
         - lambda: |-
-            float v = id(batt_raw).state * 2.0;
+            float v = id(batt_raw).state * 2.0f;
             id(battery_voltage).publish_state(v);
             float pct = (v - 3.0f) / (4.2f - 3.0f) * 100.0f;
             if (pct > 100) pct = 100;
@@ -90,7 +91,7 @@ sensor:
     unit_of_measurement: "V"
     accuracy_decimals: 2
     update_interval: never
-    lambda: return id(batt_raw).state * 2.0;  # divider 1:2
+    lambda: return id(batt_raw).state * 2.0f;  # divider 1:2
 
   - platform: template
     id: battery_pct
@@ -101,7 +102,7 @@ sensor:
     internal: true
     update_interval: never
     lambda: |-
-      float v = id(batt_raw).state * 2.0;
+      float v = id(batt_raw).state * 2.0f;
       float pct = (v - 3.0f) / (4.2f - 3.0f) * 100.0f;
       if (pct > 100) pct = 100;
       if (pct < 0)   pct = 0;
