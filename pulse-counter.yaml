@@ -89,7 +89,7 @@ sensor:
     update_interval: never
     lambda: return id(batt_raw).state * 2.0f;  # divider 1:2
 
-  - platform: template
+  - platform: template # required by zigbee stack
     id: battery_pct
     unit_of_measurement: "%"
     accuracy_decimals: 0
