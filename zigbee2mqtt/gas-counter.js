@@ -11,7 +11,7 @@ const definition = {
             cluster: 'genAnalogInput',
             type: ['attributeReport', 'readResponse'],
             convert: (model, msg, publish, options, meta) => {
-                console.log('EP:', msg.endpoint.ID, 'val:', msg.data.presentValue);
+                // console.log('EP:', msg.endpoint.ID, 'val:', msg.data.presentValue);
                 if (msg.endpoint.ID === 1) {
                     return { total_count: msg.data.presentValue };
                 }
