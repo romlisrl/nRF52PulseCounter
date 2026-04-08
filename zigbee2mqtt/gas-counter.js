@@ -16,7 +16,8 @@ const definition = {
                     return { total_count: msg.data.presentValue };
                 }
                 if (msg.endpoint.ID === 2) {
-                    const v = msg.data.presentValue;
+                    // const v = msg.data.presentValue;
+                    const v = Math.round(msg.data.presentValue * 10000) / 10000;
                     let pct = (v - 3.0) / (4.2 - 3.0) * 100;
                     if (pct > 100) pct = 100;
                     if (pct < 0) pct = 0;
