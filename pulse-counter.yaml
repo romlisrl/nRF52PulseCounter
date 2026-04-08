@@ -69,7 +69,7 @@ sensor:
     lambda: return id(pulse_count);
     update_interval: never
 
-  # Battery: divider 100кΩ+100кΩ (100MΩ+100MΩ) on P0.31 (AIN7)
+  # Battery: divider 100кΩ+100кΩ (1MΩ+1MΩ) on P0.31 (AIN7)
   - platform: adc
     id: batt_raw
     pin: P0.31             # AIN7
